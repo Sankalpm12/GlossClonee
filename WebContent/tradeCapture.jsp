@@ -34,7 +34,7 @@
 	</table>
 	<br/><br/>
 	<div class="Container ">
-	<input type="submit" value="Submit"/></t><input type="submit" value="Close"/>
+	<input type="submit" value="Submit"/></t><input type="button" onclick="window.location.href = 'http://localhost:8080/GLOSSClone/ServletController';" value="Close"/>
 	</div>
 	</div>
 </div>
