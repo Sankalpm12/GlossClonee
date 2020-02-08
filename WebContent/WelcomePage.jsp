@@ -32,7 +32,7 @@
 				<div class="dropdown">
 				<button class="dropbtn">Reporting</button>
 				<div class="dropdown-content">
-					<a href="#">Trade List</a>
+					<a href="/GLOSSClone/TradeReporting.jsp">Trade List</a>
 					<a href="#">Instrument List</a> 
 					<a href="#">Party List</a>
 				</div>

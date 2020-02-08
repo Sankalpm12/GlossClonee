@@ -13,6 +13,7 @@ public class TradeDetails {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="trade_no")
 	private int id;
 	
 	@Column(name="company")
@@ -33,6 +34,9 @@ public class TradeDetails {
 	@Column(name="quantity")
 	private int quantity;
 	
+	
+	public TradeDetails() {
+	}
 	public TradeDetails(String company, String instrument, String party, int price, String market, int quantity) {
 		this.company = company;
 		this.instrument = instrument;

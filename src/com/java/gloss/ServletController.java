@@ -20,6 +20,7 @@ public class ServletController extends HttpServlet {
 	 */
 	private TradeMethods trade;
 	private InstrumentMethods instrument;
+	private TradeReportingMethods tradeReporting;
 
 	public ServletController() {
 		super();
@@ -33,6 +34,7 @@ public class ServletController extends HttpServlet {
 
 		trade = new TradeMethods();
 		instrument = new InstrumentMethods();
+		tradeReporting=new TradeReportingMethods();
 
 	}
 
@@ -56,6 +58,9 @@ public class ServletController extends HttpServlet {
 			case "InstrumentCapture":
 				instrumentCapture(request, response);
 				break;
+			case "TradeEnquiry":
+				tradeEnquiry(request, response);
+				break;
 			case "Welcome":
 				welcomePage(request, response);
 				break;
@@ -68,6 +73,15 @@ public class ServletController extends HttpServlet {
 			exc.printStackTrace();
 		}
 
+	}
+
+	private void tradeEnquiry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int ref=Integer.parseInt(request.getParameter("tradeReference"));
+		TradeDetails trade=tradeReporting.searchTrade(ref);
+		request.setAttribute("TradeEnquiry", trade);
+		RequestDispatcher dispacther = request.getRequestDispatcher("/ViewTradeEnquiry.jsp");
+		dispacther.forward(request, response);
+		
 	}
 
 	private void instrumentCapture(HttpServletRequest request, HttpServletResponse response) throws IOException {
