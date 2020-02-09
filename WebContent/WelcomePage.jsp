@@ -33,8 +33,8 @@
 				<button class="dropbtn">Reporting</button>
 				<div class="dropdown-content">
 					<a href="/GLOSSClone/TradeReporting.jsp">Trade List</a>
-					<a href="#">Instrument List</a> 
-					<a href="#">Party List</a>
+					<a href="/GLOSSClone/InstrumentReporting.jsp">Instrument List</a> 
+					<a href="/GLOSSClone/PartyReporting.jsp">Party List</a>
 				</div>
 			</div>
 			</th>

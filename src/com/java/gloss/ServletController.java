@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet("/ServletController")
 public class ServletController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +19,10 @@ public class ServletController extends HttpServlet {
 	 */
 	private TradeMethods trade;
 	private InstrumentMethods instrument;
+	private PartyMethods party;
 	private TradeReportingMethods tradeReporting;
+	private InstrumentReportingMethods instrumentReporting;
+	private PartyReportingMethods partyReporting;
 
 	public ServletController() {
 		super();
@@ -34,7 +36,10 @@ public class ServletController extends HttpServlet {
 
 		trade = new TradeMethods();
 		instrument = new InstrumentMethods();
-		tradeReporting=new TradeReportingMethods();
+		party = new PartyMethods();
+		tradeReporting = new TradeReportingMethods();
+		instrumentReporting = new InstrumentReportingMethods();
+		partyReporting = new PartyReportingMethods();
 
 	}
 
@@ -46,7 +51,7 @@ public class ServletController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String option = request.getParameter("command");
-		
+
 		if (option == null) {
 			option = "Welcome";
 		}
@@ -58,8 +63,17 @@ public class ServletController extends HttpServlet {
 			case "InstrumentCapture":
 				instrumentCapture(request, response);
 				break;
+			case "PartyCapture":
+				partyCapture(request, response);
+				break;
 			case "TradeEnquiry":
 				tradeEnquiry(request, response);
+				break;
+			case "InstrumentEnquiry":
+				InstrumentEnquiry(request, response);
+				break;
+			case "PartyEnquiry":
+				PartyEnquiry(request, response);
 				break;
 			case "Welcome":
 				welcomePage(request, response);
@@ -75,26 +89,55 @@ public class ServletController extends HttpServlet {
 
 	}
 
-	private void tradeEnquiry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int ref=Integer.parseInt(request.getParameter("tradeReference"));
-		TradeDetails trade=tradeReporting.searchTrade(ref);
-		request.setAttribute("TradeEnquiry", trade);
-		RequestDispatcher dispacther = request.getRequestDispatcher("/ViewTradeEnquiry.jsp");
+	private void PartyEnquiry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int ref = Integer.parseInt(request.getParameter("partyReference"));
+		PartyDetails party = partyReporting.searchParty(ref);
+		request.setAttribute("PartyDetail", party);
+		RequestDispatcher dispacther = request.getRequestDispatcher("/ViewPartyEnquiry.jsp");
 		dispacther.forward(request, response);
 		
 	}
 
+	private void partyCapture(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String partyName = request.getParameter("partyName");
+		String partyReference = request.getParameter("partyReference");
+		String country = request.getParameter("country");
+
+		party.addParty(partyName, partyReference, country);
+
+		response.sendRedirect(request.getContextPath() + "/ServletController");
+
+	}
+
+	private void InstrumentEnquiry(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int ref = Integer.parseInt(request.getParameter("instrumentReference"));
+		InstrumentDetails instrument = instrumentReporting.searchInstrument(ref);
+		request.setAttribute("InstrumentEnquiry", instrument);
+		RequestDispatcher dispacther = request.getRequestDispatcher("/ViewInstrumentEnquiry.jsp");
+		dispacther.forward(request, response);
+
+	}
+
+	private void tradeEnquiry(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int ref = Integer.parseInt(request.getParameter("tradeReference"));
+		TradeDetails trade = tradeReporting.searchTrade(ref);
+		request.setAttribute("TradeEnquiry", trade);
+		RequestDispatcher dispacther = request.getRequestDispatcher("/ViewTradeEnquiry.jsp");
+		dispacther.forward(request, response);
+
+	}
+
 	private void instrumentCapture(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
+
 		String instrName = request.getParameter("InstrumentName");
 		String instrReference = request.getParameter("InstrumentRef");
 		String market = request.getParameter("market");
 
 		instrument.addInstrument(instrName, instrReference, market);
 		response.sendRedirect(request.getContextPath() + "/ServletController");
-		 
-	
-		
+
 	}
 
 	/**

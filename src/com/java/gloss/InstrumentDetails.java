@@ -13,6 +13,7 @@ public class InstrumentDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "instrument_id")
 	private int instrumentId;
 
 	@Column(name = "instrument_name")
@@ -23,6 +24,14 @@ public class InstrumentDetails {
 
 	@Column(name = "market")
 	private String market;
+
+	public int getInstrumentId() {
+		return instrumentId;
+	}
+
+	public void setInstrumentId(int instrumentId) {
+		this.instrumentId = instrumentId;
+	}
 
 	public String getInstrumentName() {
 		return instrumentName;
@@ -46,6 +55,9 @@ public class InstrumentDetails {
 
 	public void setMarket(String market) {
 		this.market = market;
+	}
+
+	public InstrumentDetails() {
 	}
 
 	public InstrumentDetails(String instrumentName, String instrumentReference, String market) {

@@ -12,9 +12,6 @@ public class TradeMethods {
 	
 	TradeMethods(){}
 	
-	public TradeMethods(SessionFactory factory2) {
-		factory=factory2;
-	}
 
 	public void addTradeDetails(String company,String instrument,String party,int price ,String market,int quantity) {
 		session=factory.getCurrentSession();

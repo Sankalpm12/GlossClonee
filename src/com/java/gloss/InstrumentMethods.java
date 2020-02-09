@@ -13,10 +13,6 @@ public class InstrumentMethods {
 	InstrumentMethods() {
 	}
 
-	public InstrumentMethods(SessionFactory factory2) {
-		factory = factory2;
-	}
-
 	public void addInstrument(String instrName, String instrReference, String market) {
 		session=factory.getCurrentSession();
 		

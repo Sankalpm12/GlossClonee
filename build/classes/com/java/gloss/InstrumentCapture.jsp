@@ -4,14 +4,15 @@
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="CSS/tradeCapture.css">
-<title>Party Capture</title>
+<title>Instrument Capture</title>
 </head>
 <body>
 <form action="ServletController" method="GET">
-<input type="hidden" name="command" value="PartyCapture">
+<input type="hidden" name="command" value="InstrumentCapture">
+
 <div id="wrapper">
 	<div id="header">
-	<h2 align="center"> Party Capture </h2>
+	<h2 align="center"> Instrument Capture </h2>
 	
 	</div>
 
@@ -21,9 +22,9 @@
 	<div id="content">
 	<table>
 	
-		<tr><td align="right">Party Name:</td><td><input type="text" placeholder="Enter Party name" name="partyName"/><br/></td></tr>
-		<tr><td align="right">Party Reference:</td><td><input type="text" placeholder="Enter party reference" name="partyReference"/></td></tr>
-		<tr><td align="right">Country:</td><td><input type="text" placeholder="Enter country" name="country"/><br/></td></tr>
+		<tr><td align="right">Instrument Name:</td><td><input type="text" placeholder="Enter company reference" name="InstrumentName"/><br/></td></tr>
+		<tr><td align="right">Instrument Reference:</td><td><input type="text" placeholder="Enter instrument reference" name="InstrumentRef"/></td></tr>
+		<tr><td align="right">Market:</td><td><input type="text" placeholder="Enter Party reference" name="market"/><br/></td></tr>
 	</table>
 	<br/><br/>
 	<div class="Container ">
